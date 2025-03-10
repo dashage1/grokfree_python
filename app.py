@@ -659,7 +659,7 @@ class GrokApiClient:
                     last_content = text_content
                     last_role = role
             message_length += len(messages)
-            if message_length >= 40000:
+            if message_length >= 140000:
                 convert_to_file = True
                
         if convert_to_file:
