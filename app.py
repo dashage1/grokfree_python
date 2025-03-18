@@ -1196,7 +1196,7 @@ def chat_completions():
                     token_manager.reduce_token_request_count(model,1)#重置去除当前因为错误未成功请求的次数，确保不会因为错误未成功请求的次数导致次数上限
                     if token_manager.get_token_count_for_model(model) == 0:
                         raise ValueError(f"{model} 次数已达上限，请切换其他模型或者重新对话")
-                    raise ValueError(f"IP暂时被封无法破盾，请稍后重试或者更换ip")
+                    raise ValueError(f"IP被封，请等待管理员更换，或主动反馈，客服微信：wx2481022")
                 elif response.status_code == 429:
                     response_status_code = 429
                     token_manager.reduce_token_request_count(model,1)
@@ -1224,7 +1224,7 @@ def chat_completions():
                     raise
                 continue
         if response_status_code == 403:
-            raise ValueError('IP暂时被封无法破盾，请稍后重试或者更换ip')
+            raise ValueError('IP被封，请等待管理员更换，或主动反馈，客服微信：wx2481022')
         elif response_status_code == 500:
             raise ValueError('当前模型所有令牌暂无可用，请稍后重试')    
 
